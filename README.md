@@ -16,7 +16,7 @@ Pawfect is a chat-based web app where users can describe their pet's symptoms, a
 |---|---|
 | Frontend | Next.js 14, TypeScript, Tailwind CSS, shadcn/ui |
 | Backend | Java 17, Spring Boot 3, Maven |
-| AI | Groq API — Llama 3 (8B) |
+| AI | Groq API — GPT OSS 120B |
 | Auth | JWT with Spring Security |
 | Database | PostgreSQL via NeonDB |
 | HTTP Client | Java built-in HttpClient |
@@ -29,7 +29,7 @@ Pawfect is a chat-based web app where users can describe their pet's symptoms, a
 
 **The chat** works statelessly — the frontend maintains the full conversation history in memory and sends it with every message. This gives the AI full context of the conversation without requiring the backend to persist chat history. The backend forwards the message list to Groq's API along with a veterinary system prompt, then streams the response back to the user.
 
-**The AI** is Llama 3 running on Groq's inference infrastructure, accessed via an OpenAI-compatible endpoint. The system prompt instructs it to behave as a warm, knowledgeable vet assistant and always recommend professional consultation for serious concerns.
+**The AI** is OpenAI's open source model running on Groq's inference infrastructure, accessed via an OpenAI-compatible endpoint. The system prompt instructs it to behave as a warm, knowledgeable vet assistant and always recommend professional consultation for serious concerns.
 
 ---
 
