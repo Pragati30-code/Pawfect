@@ -8,11 +8,13 @@ import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Dtos {
 
-    // --- Auth ---
+    // ── Auth ──────────────────────────────────────────
+
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
@@ -45,12 +47,13 @@ public class Dtos {
         private String email;
     }
 
-    // --- Chat ---
+    // ── Chat ──────────────────────────────────────────
+
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
     public static class ChatMessage {
-        private String role; // "user" or "assistant"
+        private String role;
         private String content;
     }
 
@@ -58,6 +61,7 @@ public class Dtos {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class ChatRequest {
+        private String conversationId; // null = new conversation
         private List<ChatMessage> messages;
     }
 
@@ -66,6 +70,32 @@ public class Dtos {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class ChatResponse {
+        private String conversationId;
         private String message;
+    }
+
+    // ── Conversations ─────────────────────────────────
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ConversationSummary {
+        private String id;
+        private String title;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ConversationDetail {
+        private String id;
+        private String title;
+        private List<ChatMessage> messages;
+        private LocalDateTime createdAt;
+        private LocalDateTime updatedAt;
     }
 }

@@ -1,7 +1,5 @@
-// frontend/src/lib/api.ts
-
 import axios from "axios";
-import { AuthResponse, Message } from "@/types/index";
+import { AuthResponse, Message, ConversationSummary, ConversationDetail } from "@/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
@@ -26,8 +24,18 @@ export const authApi = {
 
 // ── Chat ──────────────────────────────────────────────
 export const chatApi = {
-  send: (messages: Message[]) =>
-    api.post<{ message: string }>("/api/chat", { messages }),
+  send: (messages: Message[], conversationId?: string) =>
+    api.post<{ conversationId: string; message: string }>("/api/chat", {
+      messages,
+      conversationId: conversationId ?? null,
+    }),
+};
+
+// ── Conversations ─────────────────────────────────────
+export const conversationApi = {
+  list: () => api.get<ConversationSummary[]>("/api/conversations"),
+  get: (id: string) => api.get<ConversationDetail>("/api/conversations/" + id),
+  delete: (id: string) => api.delete("/api/conversations/" + id),
 };
 
 // ── Session helpers ───────────────────────────────────

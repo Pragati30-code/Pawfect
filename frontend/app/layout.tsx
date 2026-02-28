@@ -1,17 +1,23 @@
-// frontend/src/app/layout.tsx
-
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Pawfect",
-  description: "AI veterinary assistant for your pets",
+  description: "AI veterinary assistant and cat matchmaking for your pets",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Ubuntu+Condensed&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>
         {children}
         <Toaster
@@ -23,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               border: "1px solid hsl(240 5.9% 90%)",
               borderRadius: "8px",
               fontSize: "13px",
-              fontFamily: "'Geist', system-ui, sans-serif",
+              fontFamily: "'Montserrat', system-ui, sans-serif",
             },
           }}
         />
