@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import { Inter } from 'next/font/google'
 
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
 export const metadata: Metadata = {
   title: "Pawfect",
   description: "AI veterinary assistant and cat matchmaking for your pets",

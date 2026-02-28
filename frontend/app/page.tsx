@@ -1,4 +1,4 @@
-// frontend/src/app/page.tsx
+
 
 "use client";
 
@@ -10,7 +10,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace(isLoggedIn() ? "/chat" : "/login");
+    router.replace(isLoggedIn() ? "/chat" : "/home");
   }, [router]);
 
   return (

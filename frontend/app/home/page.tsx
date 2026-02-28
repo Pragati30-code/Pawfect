@@ -99,7 +99,7 @@ function Navbar() {
         className="text-2xl font-bold tracking-tight"
         style={{ color: "#d9084a", fontFamily: "Ubuntu Condensed, sans-serif" }}
       >
-        Pawfect
+        Pawfect 🐾
       </Link>
 
       {/* Desktop links */}
@@ -130,7 +130,7 @@ function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="absolute top-16 left-0 right-0 bg-rose-50 border-b border-rose-100 px-6 py-4 flex flex-col gap-4 md:hidden">
+        <div className="z-30 absolute top-16 left-0 right-0 bg-rose-50 border-b border-rose-100 px-6 py-4 flex flex-col gap-4 md:hidden">
           {["#pricing", "#footer", "#cta"].map((href, i) => (
             <a
               key={href}
@@ -141,8 +141,8 @@ function Navbar() {
               {["Pricing", "Contact", "Download"][i]}
             </a>
           ))}
-          <Link href="/login" onClick={() => setOpen(false)}>
-            <Button size="sm" className="w-full" style={{ background: "#d9084a" }}>
+          <Link className="cursor-pointer" href="/login" onClick={() => setOpen(false)}>
+            <Button size="sm" className="w-full cursor-pointer" style={{ background: "#d9084a" }}>
               Sign in
               </Button>
           </Link>
@@ -208,45 +208,41 @@ export default function HomePage() {
       {/* ── Hero ── */}
       <section
         id="title"
-        className="min-h-screen relative"
-        style={{ background: "rgb(226, 176, 160)" }}
+        className="relative"
+        style={{ background: "rgb(226, 176, 160)", maxHeight:"87vh" }}
       >
         <Navbar />
 
-        <div className="px-6 md:px-16 pt-10 pb-32 md:pb-40 relative">
+        <div className="px-6 md:px-105 pt-10 pb-32 md:pb-40 relative">
           <div className="max-w-xl">
             <Badge
               className="mb-6 border-rose-200 text-rose-800 bg-rose-50/80"
               variant="outline"
             >
-              🐾 AI-Powered Pet Care
+              🩺 AI-Powered Pet Care
             </Badge>
 
             <h1
-              className="font-black leading-tight mb-8 text-rose-950"
+              className="relative z-20 font-black leading-tight mb-8 text-rose-950"
               style={{
                 fontSize: "clamp(2.4rem, 6vw, 3.8rem)",
                 fontFamily: "Montserrat, sans-serif",
               }}
             >
-              Meet new, interesting, delightful and captivating cats around you.
+              Your Cat's Doctor. <br></br>Your Cat's Soulmate.
             </h1>
 
             <div className="flex flex-wrap gap-3">
+              <Link href="/login" className="cursor-pointer">
               <Button
                 size="lg"
-                className="gap-2 font-semibold"
-                style={{ background: "rgb(130, 25, 25)", color: "#fff" }}
+                className="gap-2 font-semibold cursor-pointer"
+                style={{ background: "rgb(159, 121, 121)", color: "#fff" }}
+
               >
-                🍎 Download for iOS
+                Get Started 🐾
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="gap-2 font-semibold border-rose-900/30 text-rose-950 hover:bg-rose-50"
-              >
-                ▶ Google Play
-              </Button>
+              </Link>
             </div>
 
             <div className="mt-8">
@@ -261,11 +257,11 @@ export default function HomePage() {
 
           {/* Floating cat placeholder */}
           <div
-            className="hidden md:block absolute right-16 top-8 w-72 h-72 rounded-3xl rotate-[-20deg] shadow-2xl overflow-hidden"
-            style={{ background: "rgba(130,25,25,0.08)", border: "2px solid rgba(130,25,25,0.12)" }}
+            className="hidden md:block absolute right-75 top-10 w-85 h-full rounded-3xl rotate-[-20deg] shadow-2xl overflow-hidden"
+            style={{ background: "rgba(130,25,25,0.08)", border: "2px solid rgba(130,25,25,0.12)"}}
           >
             <div className="w-full h-full flex items-center justify-center text-8xl">
-              🐱
+            <img src="/cat.png" alt="" />
             </div>
             </div>
         </div>
