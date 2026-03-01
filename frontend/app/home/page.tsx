@@ -18,6 +18,7 @@ import {
   Twitter,
   Menu,
   X,
+  Github,
 } from "lucide-react";
 
 // ── Data ───────────────────────────────────────────────
@@ -26,12 +27,12 @@ const features = [
   {
     icon: CheckCircle2,
     title: "User Friendly",
-    desc: "So easy and hassle-free to use, even your cat could do it.",
+    desc: "So easy and hassle-free to use, even your pet could do it.",
   },
   {
     icon: Target,
-    title: "Upscale Clientele",
-    desc: "We have every breed of cat — the perfect cats.",
+    title: "Keep Health in check",
+    desc: "With our Vet AI, get cure and diagnosis for any pet's problem.",
   },
   {
     icon: Flame,
@@ -50,41 +51,41 @@ const testimonials = [
   },
   {
     quote:
-      "My cat used to be so lonely, but with Pawfect's help, maybe they've found the love of their life.",
-    name: "Priya",
+      "My dog used to be so lonely, but with Pawfect's help, maybe they've found the love of their life.",
+    name: "Shilpa",
     location: "Mumbai",
-    emoji: "🐱",
+    emoji: "🐕",
   },
 ];
 
-const plans = [
-  {
-    name: "American Wirehair",
-    price: "Free",
-    perks: ["5 Matches Per Day", "10 Messages Per Day", "Unlimited App Usage"],
-    highlight: false,
-  },
-  {
-    name: "Balinese",
-    price: "₹499",
-    period: "/ mo",
-    perks: ["Unlimited Matches", "Unlimited Messages", "Unlimited App Usage"],
-    highlight: true,
-  },
-  {
-    name: "Burmese",
-    price: "₹999",
-    period: "/ mo",
-    perks: ["Priority Listing", "Unlimited Matches", "Unlimited App Usage"],
-    highlight: false,
-  },
-];
+// const plans = [
+//   {
+//     name: "American Wirehair",
+//     price: "Free",
+//     perks: ["5 Matches Per Day", "10 Messages Per Day", "Unlimited App Usage"],
+//     highlight: false,
+//   },
+//   {
+//     name: "Husky",
+//     price: "₹499",
+//     period: "/ mo",
+//     perks: ["Unlimited Matches", "Unlimited Messages", "Unlimited App Usage"],
+//     highlight: true,
+//   },
+//   {
+//     name: "Flemish Giant rabbit",
+//     price: "₹999",
+//     period: "/ mo",
+//     perks: ["Priority Listing", "Unlimited Matches", "Unlimited App Usage"],
+//     highlight: false,
+//   },
+// ];
 
-const pressLogos = [
-  { name: "TNW", abbr: "TNW" },
-  { name: "Business Insider", abbr: "BI" },
-  { name: "Mashable", abbr: "M" },
-];
+// const pressLogos = [
+//   { name: "TNW", abbr: "TNW" },
+//   { name: "Business Insider", abbr: "BI" },
+//   { name: "Mashable", abbr: "M" },
+// ];
 
 // ── Components ─────────────────────────────────────────
 
@@ -92,7 +93,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="flex items-center justify-between px-6 md:px-16 h-16 relative z-20">
+    <nav className="flex items-center justify-between px-6 md:px-16 h-16 relative z-50">
       {/* Brand */}
       <Link
         href="/"
@@ -113,8 +114,13 @@ function Navbar() {
             {["Pricing", "Contact", "Download"][i]}
           </a>
         ))}
+        <a href={"https://github.com/Pragati30-code/Pawfect/"}className="text-sm font-medium text-rose-950/70 hover:text-rose-900 transition-colors">Github</a>
         <Link href="/login">
-          <Button size="sm" variant="outline" className="border-rose-200 text-rose-900 hover:bg-rose-50">
+          <Button
+            size="sm"
+            variant="outline"
+            className="border-rose-200 text-rose-900 hover:bg-rose-50"
+          >
             Sign in
           </Button>
         </Link>
@@ -130,7 +136,7 @@ function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="z-30 absolute top-16 left-0 right-0 bg-rose-50 border-b border-rose-100 px-6 py-4 flex flex-col gap-4 md:hidden">
+        <div className="fixed z-50 top-16 left-0 right-0 bg-rose-50 border-b border-rose-100 px-6 py-4 flex flex-col gap-4 md:hidden">
           {["#pricing", "#footer", "#cta"].map((href, i) => (
             <a
               key={href}
@@ -141,10 +147,18 @@ function Navbar() {
               {["Pricing", "Contact", "Download"][i]}
             </a>
           ))}
-          <Link className="cursor-pointer" href="/login" onClick={() => setOpen(false)}>
-            <Button size="sm" className="w-full cursor-pointer" style={{ background: "#d9084a" }}>
+          <Link
+            className="cursor-pointer"
+            href="/login"
+            onClick={() => setOpen(false)}
+          >
+            <Button
+              size="sm"
+              className="w-full cursor-pointer"
+              style={{ background: "#d9084a" }}
+            >
               Sign in
-              </Button>
+            </Button>
           </Link>
         </div>
       )}
@@ -159,7 +173,9 @@ function TestimonialCarousel() {
   return (
     <div className="relative max-w-3xl mx-auto px-12">
       <button
-        onClick={() => setIdx((i) => (i - 1 + testimonials.length) % testimonials.length)}
+        onClick={() =>
+          setIdx((i) => (i - 1 + testimonials.length) % testimonials.length)
+        }
         className="absolute left-0 top-1/2 -translate-y-1/2 p-2 rounded-full hover:bg-rose-100 transition-colors"
       >
         <ChevronLeft className="h-5 w-5 text-rose-900" />
@@ -182,7 +198,7 @@ function TestimonialCarousel() {
               onClick={() => setIdx(i)}
               className={cn(
                 "w-2 h-2 rounded-full transition-all",
-                i === idx ? "bg-rose-600 w-4" : "bg-rose-300"
+                i === idx ? "bg-rose-600 w-4" : "bg-rose-300",
               )}
             />
           ))}
@@ -203,13 +219,15 @@ function TestimonialCarousel() {
 
 export default function HomePage() {
   return (
-    <div style={{ fontFamily: "Montserrat, sans-serif" }} className="overflow-x-hidden">
-
+    <div
+      style={{ fontFamily: "Montserrat, sans-serif" }}
+      className="overflow-x-hidden"
+    >
       {/* ── Hero ── */}
       <section
         id="title"
         className="relative"
-        style={{ background: "rgb(226, 176, 160)", maxHeight:"87vh" }}
+        style={{ background: "rgb(226, 176, 160)", maxHeight: "87vh" }}
       >
         <Navbar />
 
@@ -229,19 +247,18 @@ export default function HomePage() {
                 fontFamily: "Montserrat, sans-serif",
               }}
             >
-              Your Cat's Doctor. <br></br>Your Cat's Soulmate.
+              Your Pet's Doctor. <br></br>Your Pet's Soulmate.
             </h1>
 
             <div className="flex flex-wrap gap-3">
               <Link href="/login" className="cursor-pointer">
-              <Button
-                size="lg"
-                className="gap-2 font-semibold cursor-pointer"
-                style={{ background: "rgb(159, 121, 121)", color: "#fff" }}
-
-              >
-                Get Started 🐾
-              </Button>
+                <Button
+                  size="lg"
+                  className="gap-2 font-semibold cursor-pointer"
+                  style={{ background: "rgb(159, 121, 121)", color: "#fff" }}
+                >
+                  Get Started 🐾
+                </Button>
               </Link>
             </div>
 
@@ -258,12 +275,15 @@ export default function HomePage() {
           {/* Floating cat placeholder */}
           <div
             className="hidden md:block absolute right-75 top-10 w-85 h-full rounded-3xl rotate-[-20deg] shadow-2xl overflow-hidden"
-            style={{ background: "rgba(130,25,25,0.08)", border: "2px solid rgba(130,25,25,0.12)"}}
+            style={{
+              background: "rgba(130,25,25,0.08)",
+              border: "2px solid rgba(130,25,25,0.12)",
+            }}
           >
             <div className="w-full h-full flex items-center justify-center text-8xl">
-            <img src="/cat.png" alt="" />
+              <img src="/cat.png" alt="" />
             </div>
-            </div>
+          </div>
         </div>
       </section>
 
@@ -277,11 +297,16 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <h2
               className="font-bold text-rose-950 mb-3"
-              style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontFamily: "Ubuntu Condensed, sans-serif" }}
+              style={{
+                fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+                fontFamily: "Ubuntu Condensed, sans-serif",
+              }}
             >
               Why Pawfect?
             </h2>
-            <p className="text-rose-700/70 text-sm">Everything your cat deserves.</p>
+            <p className="text-rose-700/70 text-sm">
+              Everything your Pet deserves.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -299,7 +324,9 @@ export default function HomePage() {
                       <Icon className="h-6 w-6 text-rose-900" />
                     </div>
                   </div>
-                  <CardTitle className="text-rose-950 text-base">{title}</CardTitle>
+                  <CardTitle className="text-rose-950 text-base">
+                    {title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-rose-700/70">{desc}</p>
@@ -317,14 +344,17 @@ export default function HomePage() {
         className="py-16 px-6"
       >
         <div className="text-center mb-4">
-          <Badge variant="outline" className="border-rose-300 text-rose-800 bg-rose-50/50">
-            Happy customers
+          <Badge
+            variant="outline"
+            className="border-rose-300 text-rose-800 bg-rose-50/50"
+          >
+            Happy customers 🎉
           </Badge>
         </div>
         <TestimonialCarousel />
       </section>
 
-      {/* ── Press ── */}
+      {/* ── Press ──
       <section
         id="press"
         style={{ background: "rgba(224, 185, 172, 0.794)" }}
@@ -344,10 +374,10 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* ── Pricing ── */}
-      <section
+      {/* <section
         id="pricing"
         className="py-24 px-6 md:px-16"
         style={{ background: "rgb(245, 232, 227)" }}
@@ -358,10 +388,10 @@ export default function HomePage() {
               className="font-bold text-rose-950 mb-3"
               style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontFamily: "Ubuntu Condensed, sans-serif" }}
             >
-              A Plan for Every Cat's Needs
+              A Plan for Every Pet's Needs
             </h2>
             <p className="text-rose-700/70 text-sm italic">
-              Simple and affordable price plans for you and your cat.
+              Simple and affordable price plans for you and your pet.
             </p>
           </div>
 
@@ -425,16 +455,19 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
       {/* ── CTA ── */}
       <section
         id="cta"
-        className="py-24 px-6 text-center"
-        style={{ background: "rgba(224, 185, 172, 0.794)" }}
+        className="py-0 pt-12 px-6 text-center"
+        style={{ background: "rgb(245, 232, 227)" }}
       >
         <h2
           className="font-bold text-rose-950 mb-8"
-          style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", fontFamily: "Ubuntu Condensed, sans-serif" }}
+          style={{
+            fontSize: "clamp(1.8rem, 4vw, 3rem)",
+            fontFamily: "Ubuntu Condensed, sans-serif",
+          }}
         >
           Get Your #Pawfect Match Now.
         </h2>
@@ -442,25 +475,12 @@ export default function HomePage() {
           <Button
             size="lg"
             className="gap-2 font-semibold"
-            style={{ background: "rgb(130, 25, 25)", color: "#fff" }}
+            style={{ background: "rgb(196, 122, 122)", color: "#fff" }}
           >
-            🍎 Download for iOS
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="gap-2 font-semibold border-rose-900/30 text-rose-950 hover:bg-rose-100"
-          >
-            ▶ Google Play
+            🩺 AI Vet Assistant
           </Button>
         </div>
-        <p className="text-sm text-rose-700/70">
-          Or try our{" "}
-          <Link href="/chat" className="underline underline-offset-4 hover:text-rose-900 font-medium">
-            AI Vet Assistant
-          </Link>{" "}
-          — no download needed.
-        </p>
+        <p className="text-sm text-rose-700/70">No download needed.</p>
       </section>
 
       {/* ── Footer ── */}
@@ -469,16 +489,30 @@ export default function HomePage() {
         className="py-8 px-6 text-center"
         style={{ background: "rgb(245, 232, 227)" }}
       >
-        <div className="flex justify-center gap-4 mb-4">
-          {[Phone, Twitter, Mail].map((Icon, i) => (
-            <button
-              key={i}
+        <div className="flex flex-col justify-center gap-2 mb-2">
+          <p>Star us on github 🌟</p>
+
+          <div className="flex justify-center gap-2 mb-2">
+            {/* GitHub */}
+            <a
+              href="https://github.com/Pragati30-code/Pawfect/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-9 h-9 rounded-full border border-rose-200 flex items-center justify-center text-rose-700 hover:text-rose-950 hover:border-rose-400 transition-colors"
             >
-              <Icon className="h-4 w-4" />
-            </button>
-          ))}
+              <Github className="h-4 w-4" />
+            </a>
+
+            {/* Mail */}
+            <a
+              href="mailto:pragatipanwar30@gmail.com"
+              className="w-9 h-9 rounded-full border border-rose-200 flex items-center justify-center text-rose-700 hover:text-rose-950 hover:border-rose-400 transition-colors"
+            >
+              <Mail className="h-4 w-4" />
+            </a>
+          </div>
         </div>
+
         <Separator className="bg-rose-200 max-w-xs mx-auto mb-4" />
         <p className="text-xs text-rose-700/60">© Copyright Pawfect</p>
       </footer>
