@@ -231,7 +231,7 @@ export default function HomePage() {
       >
         <Navbar />
 
-        <div className="px-6 md:px-105 pt-10 pb-32 md:pb-40 relative">
+        <div className="px-6 md:px-105 pt-10 pb-23 md:pb-40 relative">
           <div className="max-w-xl">
             <Badge
               className="mb-6 border-rose-200 text-rose-800 bg-rose-50/80"
@@ -290,7 +290,7 @@ export default function HomePage() {
       {/* ── Features ── */}
       <section
         id="features"
-        className="py-24 px-6 md:px-16"
+        className="py-20 px-6 md:px-16"
         style={{ background: "rgb(245, 232, 227)" }}
       >
         <div className="max-w-5xl mx-auto">
