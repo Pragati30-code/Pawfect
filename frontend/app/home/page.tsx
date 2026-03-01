@@ -44,14 +44,14 @@ const features = [
 const testimonials = [
   {
     quote:
-      "I no longer have to scratch other cats for love. I've found the cutest orange cat on Pawfect. !!Meowww!!",
+      "Got instant answers for my cat at 2A.M. 😭🐱 Lifesaver!",
     name: "Khushi",
     location: "Delhi",
     emoji: "🐈",
   },
   {
     quote:
-      "My dog used to be so lonely, but with Pawfect's help, maybe they've found the love of their life.",
+      "With Pawfect's help, My dog found the love 💕 of his life!!",
     name: "Shilpa",
     location: "Mumbai",
     emoji: "🐕",
@@ -346,7 +346,10 @@ export default function HomePage() {
         <div className="text-center mb-4">
           <Badge
             variant="outline"
-            className="border-rose-300 text-rose-800 bg-rose-50/50"
+            className="border-rose-400 text-rose-900 bg-rose-50/50 
+             text-sm md:text-base 
+             px-4 py-1.5 
+             font-semibold"
           >
             Happy customers 🎉
           </Badge>
