@@ -1,4 +1,5 @@
 "use client";
+import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import { useState, useEffect, useRef, useCallback } from "react";
@@ -102,6 +103,7 @@ function ChatBubble({ message }: { message: Message }) {
       >
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
           components={{
             p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
             strong: ({ children }) => (
@@ -177,7 +179,7 @@ export default function ChatPage() {
   const [activeConversationId, setActiveConversationId] = useState<
     string | null
   >(null);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loadingHistory, setLoadingHistory] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -305,7 +307,7 @@ export default function ChatPage() {
       <aside
         className={cn(
           "flex flex-col border-r bg-background transition-all duration-200 shrink-0",
-          sidebarOpen ? "w-64" : "w-0 overflow-hidden",
+          sidebarOpen ? "md:w-64 w-full" : "w-0 overflow-hidden",
         )}
       >
         {/* Sidebar header */}

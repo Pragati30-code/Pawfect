@@ -47,7 +47,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+    <div className="min-h-screen flex items-center justify-center px-4" style={{ background: "rgb(245, 232, 227)" }}>
       <div className="w-full max-w-sm space-y-6">
 
         {/* Logo mark */}

@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { ConfettiButton } from "@/components/ui/confetti";
+import Image from "next/image";
 import {
   CheckCircle2,
   Target,
@@ -43,43 +45,42 @@ const features = [
 
 const testimonials = [
   {
-    quote:
-      "Got instant answers for my cat at 2A.M. 😭🐱 Lifesaver!",
+    quote: "Got instant answers for my cat at 2A.M. 😭🐱 Lifesaver!",
     name: "Khushi",
     location: "Delhi",
     emoji: "🐈",
   },
   {
-    quote:
-      "With Pawfect's help, My dog found the love 💕 of his life!!",
+    quote: "With Pawfect's help, My dog found the love 💕 of his life!!",
     name: "Shilpa",
     location: "Mumbai",
     emoji: "🐕",
   },
 ];
 
-// const plans = [
-//   {
-//     name: "American Wirehair",
-//     price: "Free",
-//     perks: ["5 Matches Per Day", "10 Messages Per Day", "Unlimited App Usage"],
-//     highlight: false,
-//   },
-//   {
-//     name: "Husky",
-//     price: "₹499",
-//     period: "/ mo",
-//     perks: ["Unlimited Matches", "Unlimited Messages", "Unlimited App Usage"],
-//     highlight: true,
-//   },
-//   {
-//     name: "Flemish Giant rabbit",
-//     price: "₹999",
-//     period: "/ mo",
-//     perks: ["Priority Listing", "Unlimited Matches", "Unlimited App Usage"],
-//     highlight: false,
-//   },
-// ];
+const plans = [
+  {
+    name: "American Wirehair",
+    image: "/catmatch1.jpeg",
+    animalName: "Luna",
+    age: "2 yrs",
+    gender: "Female",
+  },
+  {
+    name: "Siberian Husky",
+    image: "/huskymatch.jpeg",
+    animalName: "Storm",
+    age: "3 yrs",
+    gender: "Male",
+  },
+  {
+    name: "Holland Lop",
+    image: "/rabbitmatch.jpeg",
+    animalName: "Mochi",
+    age: "1 yr",
+    gender: "Female",
+  },
+];
 
 // const pressLogos = [
 //   { name: "TNW", abbr: "TNW" },
@@ -105,16 +106,21 @@ function Navbar() {
 
       {/* Desktop links */}
       <div className="hidden md:flex items-center gap-8">
-        {["#pricing", "#footer", "#cta"].map((href, i) => (
+        {["#features", "#footer"].map((href, i) => (
           <a
             key={href}
             href={href}
             className="text-sm font-medium text-rose-950/70 hover:text-rose-900 transition-colors"
           >
-            {["Pricing", "Contact", "Download"][i]}
+            {["Features", "Contact"][i]}
           </a>
         ))}
-        <a href={"https://github.com/Pragati30-code/Pawfect/"}className="text-sm font-medium text-rose-950/70 hover:text-rose-900 transition-colors">Github</a>
+        <a
+          href={"https://github.com/Pragati30-code/Pawfect/"}
+          className="text-sm font-medium text-rose-950/70 hover:text-rose-900 transition-colors"
+        >
+          Github
+        </a>
         <Link href="/login">
           <Button
             size="sm"
@@ -137,16 +143,22 @@ function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div className="fixed z-50 top-16 left-0 right-0 bg-rose-50 border-b border-rose-100 px-6 py-4 flex flex-col gap-4 md:hidden">
-          {["#pricing", "#footer", "#cta"].map((href, i) => (
+          {["#features", "#footer"].map((href, i) => (
             <a
               key={href}
               href={href}
               className="text-sm font-medium text-rose-900"
               onClick={() => setOpen(false)}
             >
-              {["Pricing", "Contact", "Download"][i]}
+              {["Features", "Contact"][i]}
             </a>
           ))}
+          <a
+            href={"https://github.com/Pragati30-code/Pawfect/"}
+            className="text-sm font-medium text-rose-950/70 hover:text-rose-900 transition-colors"
+          >
+            Github
+          </a>
           <Link
             className="cursor-pointer"
             href="/login"
@@ -226,63 +238,79 @@ export default function HomePage() {
       {/* ── Hero ── */}
       <section
         id="title"
-        className="relative"
-        style={{ background: "rgb(226, 176, 160)", maxHeight: "87vh" }}
+        className="relative overflow-hidden min-h-[90vh] flex flex-col justify-between"
+        style={{ background: "rgb(226, 176, 160)" }}
       >
         <Navbar />
 
-        <div className="px-6 md:px-105 pt-10 pb-23 md:pb-40 relative">
-          <div className="max-w-xl">
+        <div className="relative flex-1 flex items-center px-6 md:px-16 pt-16 pb-20">
+          {/* ───────── Mobile Background Image (Zoomed) ───────── */}
+          <div className="md:hidden absolute inset-0 flex justify-end items-center pointer-events-none">
+            <img
+              src="/cat.png"
+              alt="cat"
+              className="w-[100%] opacity-40 blur-[2px] rounded-[30px]"
+              style={{
+                transform: "rotate(-4deg) scale(1.11) translateY(-30px)",
+                transformOrigin: "center",
+              }}
+            />
+          </div>
+
+          {/* ───────── Left Text (Shifted Right on Desktop) ───────── */}
+          <div className="relative z-10 w-full md:w-1/2 md:pl-65">
             <Badge
-              className="mb-6 border-rose-200 text-rose-800 bg-rose-50/80"
+              className="mb-6 border-rose-200 text-rose-800 bg-rose-50/80 px-4 py-1.5 text-sm md:text-base"
               variant="outline"
             >
               🩺 AI-Powered Pet Care
             </Badge>
 
             <h1
-              className="relative z-20 font-black leading-tight mb-8 text-rose-950"
+              className="font-black leading-tight mb-8 text-rose-950"
               style={{
-                fontSize: "clamp(2.4rem, 6vw, 3.8rem)",
+                fontSize: "clamp(2rem, 5vw, 3.8rem)",
                 fontFamily: "Montserrat, sans-serif",
               }}
             >
-              Your Pet's Doctor. <br></br>Your Pet's Soulmate.
+              Your Pet's Doctor.
+              <br />
+              Your Pet's Soulmate.
             </h1>
 
-            <div className="flex flex-wrap gap-3">
-              <Link href="/login" className="cursor-pointer">
+            <div className="flex flex-wrap gap-3 mb-6">
+              <Link href="/login">
                 <Button
                   size="lg"
-                  className="gap-2 font-semibold cursor-pointer"
-                  style={{ background: "rgb(159, 121, 121)", color: "#fff" }}
+                  className="gap-2 font-semibold"
+                  style={{ background: "rgb(130, 25, 25)", color: "#fff" }}
                 >
                   Get Started 🐾
                 </Button>
               </Link>
             </div>
 
-            <div className="mt-8">
-              <Link
-                href="/chat"
-                className="text-sm text-rose-800 underline underline-offset-4 hover:text-rose-950 transition-colors"
-              >
-                Try Pawfect AI Vet Assistant →
-              </Link>
-            </div>
+            <Link
+              href="/chat"
+              className="text-sm text-rose-900 underline underline-offset-4 hover:text-rose-950 transition-colors font-bold"
+            >
+              Try Pawfect AI Vet Assistant →
+            </Link>
           </div>
 
-          {/* Floating cat placeholder */}
-          <div
-            className="hidden md:block absolute right-75 top-10 w-85 h-full rounded-3xl rotate-[-20deg] shadow-2xl overflow-hidden"
-            style={{
-              background: "rgba(130,25,25,0.08)",
-              border: "2px solid rgba(130,25,25,0.12)",
-            }}
-          >
-            <div className="w-full h-full flex items-center justify-center text-8xl">
-              <img src="/cat.png" alt="" />
-            </div>
+          {/* ───────── Desktop Floating Image (Left + Slightly Down) ───────── */}
+          <div className="hidden md:block absolute right-24 bottom-0 z-20 md:right-50">
+            <img
+              src="/cat.png"
+              alt="cat"
+              className="drop-shadow-2xl rounded-[40px]"
+              style={{
+                height: "82vh",
+                maxHeight: "720px",
+                transform: "rotate(-10deg) translateX(-120px) translateY(20px)",
+                transformOrigin: "bottom center",
+              }}
+            />
           </div>
         </div>
       </section>
@@ -380,90 +408,96 @@ export default function HomePage() {
       </section> */}
 
       {/* ── Pricing ── */}
-      {/* <section
+      <section
         id="pricing"
         className="py-24 px-6 md:px-16"
         style={{ background: "rgb(245, 232, 227)" }}
       >
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2
               className="font-bold text-rose-950 mb-3"
-              style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontFamily: "Ubuntu Condensed, sans-serif" }}
+              style={{
+                fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
+                fontFamily: "Ubuntu Condensed, sans-serif",
+              }}
             >
-              A Plan for Every Pet's Needs
+              Match for Each & Every Pet
             </h2>
             <p className="text-rose-700/70 text-sm italic">
-              Simple and affordable price plans for you and your pet.
+              Every Paw deserves Love
             </p>
+            <span> 🤎</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
             {plans.map((plan) => (
-              <Card
+              <div
                 key={plan.name}
-                className={cn(
-                  "relative border transition-shadow",
-                  plan.highlight
-                    ? "border-rose-400 shadow-xl scale-105"
-                    : "border-rose-100 bg-white/70 hover:shadow-md"
-                )}
-                style={plan.highlight ? { background: "rgb(226, 176, 160)" } : {}}
+                className="group relative w-full overflow-hidden rounded-2xl cursor-pointer"
+                style={{ height: "210px" }}
               >
-                {plan.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge style={{ background: "rgb(130, 25, 25)", color: "#fff" }}>
-                      Most Popular
-                    </Badge>
+                {/* Full card image */}
+                <Image
+                  src={plan.image}
+                  alt={plan.name}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+
+                {/* Default state — breed pill bottom left */}
+                <div className="absolute bottom-4 left-4 transition-opacity duration-300 group-hover:opacity-0">
+                  <div
+                    className="px-3 py-1.5 rounded-full text-xs font-semibold text-white backdrop-blur-md"
+                    style={{ background: "rgba(0,0,0,0.35)" }}
+                  >
+                    {plan.name}
                   </div>
-                )}
-                <CardHeader className="text-center pb-2">
-                  <p className="text-xs font-medium text-rose-700/70 uppercase tracking-wider mb-1">
+                </div>
+
+                {/* Hover state — glassmorphism overlay from bottom */}
+                <div
+                  className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-in-out rounded-b-2xl px-5 py-5"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.18)",
+                    backdropFilter: "blur(14px)",
+                    WebkitBackdropFilter: "blur(14px)",
+                    border: "1px solid rgba(255,255,255,0.3)",
+                  }}
+                >
+                  <p className="text-xs text-white/70 font-medium uppercase tracking-wider mb-0.5">
                     {plan.name}
                   </p>
-                  <div className="flex items-end justify-center gap-1">
-                    <span
-                      className="font-bold text-rose-950"
-                      style={{ fontSize: "2.2rem", fontFamily: "Ubuntu Condensed, sans-serif" }}
-                    >
-                      {plan.price}
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-white font-bold text-lg">
+                      {plan.animalName}
                     </span>
-                    {plan.period && (
-                      <span className="text-rose-700/60 text-sm mb-1">{plan.period}</span>
-                    )}
+                    <span className="text-white/60 text-sm">·</span>
+                    <span className="text-white/80 text-sm">{plan.age}</span>
+                    <span className="text-white/60 text-sm">·</span>
+                    <span className="text-white/80 text-sm">{plan.gender}</span>
                   </div>
-                </CardHeader>
-                <CardContent className="text-center space-y-2 pt-2">
-                  {plan.perks.map((perk) => (
-                    <p key={perk} className="text-sm text-rose-900/80 flex items-center justify-center gap-2">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-rose-600 shrink-0" />
-                      {perk}
-                    </p>
-                  ))}
-                  <div className="pt-4">
-                    <Button
-                      className="w-full"
-                      variant={plan.highlight ? "default" : "outline"}
-                      style={
-                        plan.highlight
-                          ? { background: "rgb(130, 25, 25)", color: "#fff" }
-                          : { borderColor: "rgb(130, 25, 25)", color: "rgb(130, 25, 25)" }
-                      }
-                    >
-                      Sign Up
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                  <ConfettiButton
+                    className="w-full font-semibold text-sm h-9 rounded-xl"
+                    style={{
+                      background: "rgb(130, 25, 25)",
+                      color: "#fff",
+                      border: "none",
+                    }}
+                  >
+                    Get Match 🎉
+                  </ConfettiButton>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
       {/* ── CTA ── */}
       <section
         id="cta"
         className="py-0 pt-12 px-6 text-center"
-        style={{ background: "rgb(245, 232, 227)" }}
+        style={{ background: "rgba(224, 185, 172, 0.794)" }}
       >
         <h2
           className="font-bold text-rose-950 mb-8"
@@ -490,7 +524,7 @@ export default function HomePage() {
       <footer
         id="footer"
         className="py-8 px-6 text-center"
-        style={{ background: "rgb(245, 232, 227)" }}
+        style={{ background: "rgba(224, 185, 172, 0.794)" }}
       >
         <div className="flex flex-col justify-center gap-2 mb-2">
           <p>Star us on github 🌟</p>
@@ -501,7 +535,7 @@ export default function HomePage() {
               href="https://github.com/Pragati30-code/Pawfect/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full border border-rose-200 flex items-center justify-center text-rose-700 hover:text-rose-950 hover:border-rose-400 transition-colors"
+              className="w-9 h-9 rounded-full border border-rose-400 flex items-center justify-center text-rose-700 hover:text-rose-950 hover:border-rose-400 transition-colors"
             >
               <Github className="h-4 w-4" />
             </a>
@@ -509,14 +543,14 @@ export default function HomePage() {
             {/* Mail */}
             <a
               href="mailto:pragatipanwar30@gmail.com"
-              className="w-9 h-9 rounded-full border border-rose-200 flex items-center justify-center text-rose-700 hover:text-rose-950 hover:border-rose-400 transition-colors"
+              className="w-9 h-9 rounded-full border border-rose-400 flex items-center justify-center text-rose-700 hover:text-rose-950 hover:border-rose-400 transition-colors"
             >
               <Mail className="h-4 w-4" />
             </a>
           </div>
         </div>
 
-        <Separator className="bg-rose-200 max-w-xs mx-auto mb-4" />
+        <Separator className="bg-rose-400/50 max-w-xs mx-auto mb-4" />
         <p className="text-xs text-rose-700/60">© Copyright Pawfect</p>
       </footer>
     </div>
