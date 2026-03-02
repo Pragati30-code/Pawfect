@@ -98,7 +98,7 @@ function Navbar() {
       {/* Brand */}
       <Link
         href="/"
-        className="text-2xl font-bold tracking-tight"
+        className="text-3xl font-bold tracking-tight"
         style={{ color: "#d9084a", fontFamily: "Ubuntu Condensed, sans-serif" }}
       >
         Pawfect 🐾
@@ -249,7 +249,7 @@ export default function HomePage() {
             <img
               src="/cat.png"
               alt="cat"
-              className="w-[97%] opacity-40 blur-[1.5px] rounded-[30px]"
+              className="w-[97%] opacity-32 blur-[1.5px] rounded-[30px]"
               style={{
                 transform: "scale(1.15) translateY(-50px)",
               }}
@@ -508,6 +508,7 @@ export default function HomePage() {
           Get Your #Pawfect Match Now.
         </h2>
         <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <Link href="/login">
           <Button
             size="lg"
             className="gap-2 font-semibold"
@@ -515,7 +516,8 @@ export default function HomePage() {
           >
             🩺 AI Vet Assistant
           </Button>
-        </div>
+          </Link>
+        </div >
         <p className="text-sm text-rose-700/70">No download needed.</p>
       </section>
 
