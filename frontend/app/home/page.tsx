@@ -238,36 +238,35 @@ export default function HomePage() {
       {/* ── Hero ── */}
       <section
         id="title"
-        className="relative overflow-hidden min-h-[90vh] flex flex-col justify-between"
+        className="relative overflow-hidden md:min-h-[90vh] flex flex-col"
         style={{ background: "rgb(226, 176, 160)" }}
       >
         <Navbar />
 
-        <div className="relative flex-1 flex items-center px-6 md:px-16 pt-16 pb-20">
-          {/* ───────── Mobile Background Image (Zoomed) ───────── */}
+        <div className="relative flex-1 flex items-center px-6 md:px-16 pt-20 pb-25 md:pt-25 md:pb-20">
+          {/* ───────── MOBILE BACKGROUND IMAGE ───────── */}
           <div className="md:hidden absolute inset-0 flex justify-end items-center pointer-events-none">
             <img
               src="/cat.png"
               alt="cat"
-              className="w-[100%] opacity-40 blur-[2px] rounded-[30px]"
+              className="w-[97%] opacity-40 blur-[1.5px] rounded-[30px]"
               style={{
-                transform: "rotate(-4deg) scale(1.11) translateY(-30px)",
-                transformOrigin: "center",
+                transform: "scale(1.15) translateY(-50px)",
               }}
             />
           </div>
 
-          {/* ───────── Left Text (Shifted Right on Desktop) ───────── */}
-          <div className="relative z-10 w-full md:w-1/2 md:pl-65">
+          {/* ───────── LEFT TEXT ───────── */}
+          <div className="relative z-20 w-full md:w-1/2 md:pl-12">
             <Badge
-              className="mb-6 border-rose-200 text-rose-800 bg-rose-50/80 px-4 py-1.5 text-sm md:text-base"
+              className="mb-5 border-rose-200 text-rose-800 bg-rose-50/80 px-4 py-1.5 text-sm md:text-base"
               variant="outline"
             >
               🩺 AI-Powered Pet Care
             </Badge>
 
             <h1
-              className="font-black leading-tight mb-8 text-rose-950"
+              className="font-black leading-tight mb-6 text-rose-950"
               style={{
                 fontSize: "clamp(2rem, 5vw, 3.8rem)",
                 fontFamily: "Montserrat, sans-serif",
@@ -278,7 +277,7 @@ export default function HomePage() {
               Your Pet's Soulmate.
             </h1>
 
-            <div className="flex flex-wrap gap-3 mb-6">
+            <div className="flex flex-wrap gap-3 mb-5">
               <Link href="/login">
                 <Button
                   size="lg"
@@ -290,24 +289,24 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <Link
+            {/* <Link
               href="/chat"
-              className="text-sm text-rose-900 underline underline-offset-4 hover:text-rose-950 transition-colors font-bold"
+              className="text-sm font-bold text-rose-900 underline underline-offset-4 hover:text-rose-950 transition-colors"
             >
               Try Pawfect AI Vet Assistant →
-            </Link>
+            </Link> */}
           </div>
 
-          {/* ───────── Desktop Floating Image (Left + Slightly Down) ───────── */}
-          <div className="hidden md:block absolute right-24 bottom-0 z-20 md:right-50">
+          {/* ───────── DESKTOP FLOATING IMAGE (Original Style Restored) ───────── */}
+          <div className="hidden md:block absolute right-[15%] bottom-0 z-10">
             <img
               src="/cat.png"
               alt="cat"
-              className="drop-shadow-2xl rounded-[40px]"
+              className="drop-shadow-2xl opacity-82 rounded-[40px]"
               style={{
                 height: "82vh",
                 maxHeight: "720px",
-                transform: "rotate(-10deg) translateX(-120px) translateY(20px)",
+                transform: "rotate(-15deg) translateY(40px)",
                 transformOrigin: "bottom center",
               }}
             />
